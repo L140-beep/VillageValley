@@ -9,13 +9,17 @@ export (NodePath) var house
 
 const AnimationStates = {
 	IDLE = "Idle",
-	RUN = "Run"
+	RUN = "Run",
+	SLEEP = "Sleep"
 }
 
 onready var nav_agent: NavigationAgent2D  = $NavigationAgent2D
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
 onready var nameLabel = $NameLabel
+onready var sleepSprite = $Sleep
+onready var otherSprite = $Sprite
+
 export(Vector2) var target_location setget _set_target_location
 
 export(float) var ACCELERATION = 540
@@ -27,8 +31,6 @@ var velocity = Vector2.ZERO
 var direction = Vector2.ZERO
 
 func get_house():
-	print("here")
-	print(house)
 	return get_node(house)
 
 func _ready() -> void:
@@ -41,10 +43,12 @@ func _physics_process(delta: float) -> void:
 	if target_location:
 		var next_location = nav_agent.get_next_location()
 		direction = (next_location - global_position).normalized()
-	else:
+		state = AnimationStates.RUN
+		_prepare_move(direction, delta)
+	elif state != AnimationStates.SLEEP:
 		direction = Vector2.ZERO
-	
-	_prepare_move(direction, delta)
+		state = AnimationStates.IDLE
+		_prepare_move(direction, delta)
 
 func _set_animation_direction(direction: Vector2) -> void:
 		animationTree.set("parameters/Idle/blend_position", direction)
@@ -53,7 +57,7 @@ func _set_animation_direction(direction: Vector2) -> void:
 func _prepare_move(direction: Vector2, delta: float) -> void:
 	_set_animation_direction(direction)
 	if direction != Vector2.ZERO:
-		animationState.travel("Run")
+		animationState.travel(AnimationStates.RUN)
 		
 		velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
 	else:
@@ -77,6 +81,12 @@ func _on_NavigationAgent2D_velocity_computed(safe_velocity: Vector2) -> void:
 func _on_NavigationAgent2D_target_reached() -> void:
 	emit_signal("target_reached")
 
+func sleep():
+	var sleep_position = get_house().get_bed().get_sleep_pos()
+	global_position = sleep_position.global_position
+	velocity = Vector2.ZERO
+	animationState.travel(AnimationStates.SLEEP)
+	state = AnimationStates.SLEEP
 
 func _on_NavigationAgent2D_navigation_finished() -> void:
 	target_location = null

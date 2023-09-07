@@ -1,0 +1,13 @@
+[remap]
+
+importer="gif.animated.texture.plugin"
+type="SpriteFrames"
+valid=false
+
+[deps]
+
+source_file="res://assets/Super_Retro_World_Interior_pack_week42/every_packs_screenshots/screenshot (1).gif"
+[params]
+
+Filter=false
+MipMaps=false

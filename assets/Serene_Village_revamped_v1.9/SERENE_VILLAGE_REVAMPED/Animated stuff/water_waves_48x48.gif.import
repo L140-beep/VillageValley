@@ -1,0 +1,15 @@
+[remap]
+
+importer="gif.animated.texture.plugin"
+type="SpriteFrames"
+path="res://.import/water_waves_48x48.gif-70386e0ebfe40d1313d19ff544205ec3.tres"
+
+[deps]
+
+source_file="res://assets/Serene_Village_revamped_v1.9/SERENE_VILLAGE_REVAMPED/Animated stuff/water_waves_48x48.gif"
+dest_files=[ "res://.import/water_waves_48x48.gif-70386e0ebfe40d1313d19ff544205ec3.tres" ]
+
+[params]
+
+Filter=false
+MipMaps=false

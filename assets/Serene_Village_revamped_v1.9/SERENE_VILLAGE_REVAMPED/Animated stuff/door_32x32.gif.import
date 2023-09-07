@@ -1,0 +1,15 @@
+[remap]
+
+importer="gif.animated.texture.plugin"
+type="SpriteFrames"
+path="res://.import/door_32x32.gif-6a500fd3e46c614eb5e44bcc83713c2f.tres"
+
+[deps]
+
+source_file="res://assets/Serene_Village_revamped_v1.9/SERENE_VILLAGE_REVAMPED/Animated stuff/door_32x32.gif"
+dest_files=[ "res://.import/door_32x32.gif-6a500fd3e46c614eb5e44bcc83713c2f.tres" ]
+
+[params]
+
+Filter=false
+MipMaps=false
