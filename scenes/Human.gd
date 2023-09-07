@@ -5,6 +5,7 @@ signal target_reached
 signal navigation_finished
 
 export (String) var village_name
+export (NodePath) var house
 
 const AnimationStates = {
 	IDLE = "Idle",
@@ -25,6 +26,11 @@ var state = AnimationStates.IDLE
 var velocity = Vector2.ZERO
 var direction = Vector2.ZERO
 
+func get_house():
+	print("here")
+	print(house)
+	return get_node(house)
+
 func _ready() -> void:
 	nameLabel.text = village_name
 	animationTree.active = true
@@ -34,7 +40,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if target_location:
 		var next_location = nav_agent.get_next_location()
-		direction = (next_location - global_transform.origin).normalized()
+		direction = (next_location - global_position).normalized()
 	else:
 		direction = Vector2.ZERO
 	
@@ -48,13 +54,14 @@ func _prepare_move(direction: Vector2, delta: float) -> void:
 	_set_animation_direction(direction)
 	if direction != Vector2.ZERO:
 		animationState.travel("Run")
+		
 		velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
 	else:
 		animationState.travel("Idle")
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	
 	nav_agent.set_velocity(velocity)
-	
+	#move(velocity)
 
 func _set_target_location(new_target_location) -> void:
 		target_location = new_target_location
@@ -62,6 +69,7 @@ func _set_target_location(new_target_location) -> void:
 
 func move(velocity: Vector2):
 	self.velocity = move_and_slide(velocity)
+	#move_and_collide()
 
 func _on_NavigationAgent2D_velocity_computed(safe_velocity: Vector2) -> void:
 	move(safe_velocity)

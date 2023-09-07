@@ -3,9 +3,8 @@
 [ext_resource path="res://scenes/Human.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Modern tiles_Free/Characters_free/Adam_16x16.png" type="Texture" id=2]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 7.0
-height = 0.0
+[sub_resource type="RectangleShape2D" id=26]
+extents = Vector2( 4, 4 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "IdleDown"
@@ -209,17 +208,19 @@ graph_offset = Vector2( 332.059, 0 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=14]
 
 [node name="Man" instance=ExtResource( 1 )]
+MAX_SPEED = 25.0
 
 [node name="Sprite" parent="." index="0"]
-position = Vector2( 0, -13 )
+position = Vector2( 0, -15 )
+scale = Vector2( 1.0625, 0.96875 )
 texture = ExtResource( 2 )
 hframes = 24
 vframes = 7
 frame = 45
 
 [node name="CollisionShape" parent="." index="1"]
-position = Vector2( 0, -8 )
-shape = SubResource( 1 )
+position = Vector2( 0, -6 )
+shape = SubResource( 26 )
 
 [node name="AnimationPlayer" parent="." index="2"]
 anims/IdleDown = SubResource( 2 )
@@ -239,8 +240,14 @@ parameters/playback = SubResource( 14 )
 parameters/Idle/blend_position = Vector2( -0.00851786, 0.17069 )
 parameters/Run/blend_position = Vector2( 0, 0 )
 
+[node name="FOV" parent="." index="4"]
+position = Vector2( 1, 1 )
+
 [node name="Hurtbox" parent="." index="5"]
 position = Vector2( 1, 1 )
 
-[node name="NavigationAgent2D" parent="." index="6"]
-navigation_layers = 13
+[node name="NameLabel" parent="." index="7"]
+margin_left = -10.0
+margin_top = 10.0
+margin_right = 10.0
+margin_bottom = 24.0

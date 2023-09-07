@@ -3,12 +3,11 @@ extends ActionLeaf
 var target_reached = false
 var navigation_finished = false
 var initialized = false
-var actor = null
 var target = null
 export var point_index = 0
 var i = 0
+
 func init(actor):
-	self.actor = actor
 	target = null
 	actor.connect("target_reached", self, "_target_reached")
 	actor.connect("navigation_finished", self, "_navigation_finished")

@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/beehave/nodes/decorators/succeeder.gd"
 }, {
+"base": "Node2D",
+"class": "Bed",
+"language": "GDScript",
+"path": "res://scenes/Decor/Bed.gd"
+}, {
 "base": "BeehaveTree",
 "class": "BeehaveNode",
 "language": "GDScript",
@@ -58,6 +63,11 @@ _global_script_classes=[ {
 "class": "Decorator",
 "language": "GDScript",
 "path": "res://addons/beehave/nodes/decorators/decorator.gd"
+}, {
+"base": "Node2D",
+"class": "House",
+"language": "GDScript",
+"path": "res://scenes/House.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Human",
@@ -103,6 +113,7 @@ _global_script_class_icons={
 "ActionLeaf": "res://addons/beehave/icons/action.svg",
 "AlwaysFailDecorator": "res://addons/beehave/icons/fail.svg",
 "AlwaysSucceedDecorator": "res://addons/beehave/icons/succeed.svg",
+"Bed": "",
 "BeehaveNode": "res://addons/beehave/icons/action.svg",
 "BeehaveRoot": "res://addons/beehave/icons/tree.svg",
 "BeehaveTree": "res://addons/beehave/icons/icon.png",
@@ -110,6 +121,7 @@ _global_script_class_icons={
 "Composite": "res://addons/beehave/icons/category_composite.svg",
 "ConditionLeaf": "res://addons/beehave/icons/condition.svg",
 "Decorator": "res://addons/beehave/icons/category_decorator.svg",
+"House": "",
 "Human": "",
 "InverterDecorator": "res://addons/beehave/icons/inverter.svg",
 "Leaf": "res://addons/beehave/icons/action.svg",
@@ -144,10 +156,15 @@ common/drop_mouse_on_gui_input_disabled=true
 
 [layer_names]
 
+2d_physics/layer_1="Zone"
 2d_navigation/layer_1="Environment"
 2d_navigation/layer_2="HumanHitbox"
 2d_navigation/layer_3="Road"
 2d_navigation/layer_4="Glass"
+
+[navigation]
+
+2d/default_edge_connection_margin=32.0
 
 [physics]
 
