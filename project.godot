@@ -64,6 +64,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/beehave/nodes/decorators/decorator.gd"
 }, {
+"base": "Node2D",
+"class": "Door",
+"language": "GDScript",
+"path": "res://scenes/Decor/Door.gd"
+}, {
 "base": "Reference",
 "class": "GifReader",
 "language": "GDScript",
@@ -126,6 +131,7 @@ _global_script_class_icons={
 "Composite": "res://addons/beehave/icons/category_composite.svg",
 "ConditionLeaf": "res://addons/beehave/icons/condition.svg",
 "Decorator": "res://addons/beehave/icons/category_decorator.svg",
+"Door": "",
 "GifReader": "",
 "House": "",
 "Human": "",
@@ -143,6 +149,10 @@ _global_script_class_icons={
 config/name="VillageValley"
 run/main_scene="res://scenes/Main.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+WorldClock="*res://scenes/WorldClock.tscn"
 
 [display]
 

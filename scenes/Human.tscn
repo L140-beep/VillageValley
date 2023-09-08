@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/Human.gd" type="Script" id=1]
 [ext_resource path="res://fonts/Godot-Fontpack-d244bf6170b399a6d4d26a0d906058ddf2dafdf1/fonts/montreal/Montreal.tres" type="DynamicFont" id=2]
@@ -7,7 +7,13 @@
 radius = 3.0
 height = 3.0
 
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 6.0
+height = 8.0
+
 [node name="Human" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource( 1 )
 MAX_SPEED = 1.0
 
@@ -49,6 +55,14 @@ max_lines_visible = 1
 
 [node name="Sleep" type="Sprite" parent="."]
 
+[node name="DoorDetect" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape" type="CollisionShape2D" parent="DoorDetect"]
+position = Vector2( 0, -9 )
+shape = SubResource( 2 )
+
 [connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_NavigationAgent2D_navigation_finished"]
 [connection signal="target_reached" from="NavigationAgent2D" to="." method="_on_NavigationAgent2D_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_NavigationAgent2D_velocity_computed"]
+[connection signal="area_entered" from="DoorDetect" to="." method="_on_DoorDetect_area_entered"]

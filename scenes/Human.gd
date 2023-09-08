@@ -3,6 +3,10 @@ extends KinematicBody2D
 
 signal target_reached
 signal navigation_finished
+signal door_detected
+signal door_exited
+
+var stamina = 100
 
 export (String) var village_name
 export (NodePath) var house
@@ -13,6 +17,7 @@ const AnimationStates = {
 	SLEEP = "Sleep"
 }
 
+onready var worldClock = $WorldClock
 onready var nav_agent: NavigationAgent2D  = $NavigationAgent2D
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
@@ -34,6 +39,7 @@ func get_house():
 	return get_node(house)
 
 func _ready() -> void:
+	WorldClock.connect("time", self, "_time")
 	nameLabel.text = village_name
 	animationTree.active = true
 	target_location = global_position
@@ -49,6 +55,8 @@ func _physics_process(delta: float) -> void:
 		direction = Vector2.ZERO
 		state = AnimationStates.IDLE
 		_prepare_move(direction, delta)
+	else:
+		stamina += 0.1
 
 func _set_animation_direction(direction: Vector2) -> void:
 		animationTree.set("parameters/Idle/blend_position", direction)
@@ -73,7 +81,7 @@ func _set_target_location(new_target_location) -> void:
 
 func move(velocity: Vector2):
 	self.velocity = move_and_slide(velocity)
-	#move_and_collide()
+	print(velocity)
 
 func _on_NavigationAgent2D_velocity_computed(safe_velocity: Vector2) -> void:
 	move(safe_velocity)
@@ -91,3 +99,16 @@ func sleep():
 func _on_NavigationAgent2D_navigation_finished() -> void:
 	target_location = null
 	emit_signal("navigation_finished")
+
+func _on_DoorDetect_area_entered(area: Area2D) -> void:
+	area.get_parent().open()
+	emit_signal("door_detected", area.get_parent())
+
+func _time(time):
+	# Уменьшение стамины по дефолту
+	print(time)
+		
+		
+
+func _on_DoorDetect_area_exited(area: Area2D) -> void:
+	area.get_parent().close()

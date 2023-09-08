@@ -477,6 +477,8 @@ graph_offset = Vector2( 333.059, -20 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=14]
 
 [node name="Man" instance=ExtResource( 1 )]
+collision_layer = 1
+collision_mask = 1
 MAX_SPEED = 25.0
 
 [node name="Sprite" parent="." index="0"]
@@ -485,7 +487,7 @@ scale = Vector2( 1.0625, 0.96875 )
 texture = ExtResource( 2 )
 hframes = 24
 vframes = 7
-frame = 43
+frame = 46
 
 [node name="AnimationPlayer" parent="." index="2"]
 anims/IdleDown = SubResource( 2 )
@@ -524,6 +526,8 @@ margin_bottom = 24.0
 
 [node name="Sleep" parent="." index="8"]
 visible = false
-position = Vector2( 0, -16 )
+position = Vector2( 0, -15 )
 texture = ExtResource( 3 )
 hframes = 6
+
+[connection signal="area_exited" from="DoorDetect" to="." method="_on_DoorDetect_area_exited"]
