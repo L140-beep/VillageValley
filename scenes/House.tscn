@@ -807,3 +807,6 @@ position = Vector2( 13, 16 )
 
 [node name="Door" parent="." instance=ExtResource( 4 )]
 position = Vector2( 48, 104 )
+
+[node name="GoToHomePoint" type="Position2D" parent="."]
+position = Vector2( 56, 80 )

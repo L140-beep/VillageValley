@@ -4,9 +4,13 @@ extends KinematicBody2D
 signal target_reached
 signal navigation_finished
 signal door_detected
-signal door_exited
 
-var stamina = 100
+const MAX_STAMINA: int = 1_000_000
+const DEFAULT_STAMINA_DRAIN: int = 23
+var stamina: int = MAX_STAMINA
+var stamina_drain_modificator: float = 1
+export(bool) var show_stamina = true
+
 
 export (String) var village_name
 export (NodePath) var house
@@ -17,7 +21,6 @@ const AnimationStates = {
 	SLEEP = "Sleep"
 }
 
-onready var worldClock = $WorldClock
 onready var nav_agent: NavigationAgent2D  = $NavigationAgent2D
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
@@ -55,9 +58,10 @@ func _physics_process(delta: float) -> void:
 		direction = Vector2.ZERO
 		state = AnimationStates.IDLE
 		_prepare_move(direction, delta)
-	else:
-		stamina += 0.1
-
+	
+	stamina = clamp(stamina - (stamina_drain_modificator * DEFAULT_STAMINA_DRAIN), 0, MAX_STAMINA)
+	if show_stamina:
+		print(stamina)
 func _set_animation_direction(direction: Vector2) -> void:
 		animationTree.set("parameters/Idle/blend_position", direction)
 		animationTree.set("parameters/Run/blend_position", direction)
@@ -81,7 +85,9 @@ func _set_target_location(new_target_location) -> void:
 
 func move(velocity: Vector2):
 	self.velocity = move_and_slide(velocity)
-	print(velocity)
+	if state != AnimationStates.SLEEP:
+		var relation = ((self.velocity.y / MAX_SPEED) + (self.velocity.x / MAX_SPEED)) / 2
+		stamina_drain_modificator = 1 + relation
 
 func _on_NavigationAgent2D_velocity_computed(safe_velocity: Vector2) -> void:
 	move(safe_velocity)
@@ -90,11 +96,12 @@ func _on_NavigationAgent2D_target_reached() -> void:
 	emit_signal("target_reached")
 
 func sleep():
-	var sleep_position = get_house().get_bed().get_sleep_pos()
-	global_position = sleep_position.global_position
-	velocity = Vector2.ZERO
+	print(self)
+	print("sleep")
 	animationState.travel(AnimationStates.SLEEP)
 	state = AnimationStates.SLEEP
+	velocity = Vector2.ZERO
+	stamina_drain_modificator = -2
 
 func _on_NavigationAgent2D_navigation_finished() -> void:
 	target_location = null
@@ -105,10 +112,8 @@ func _on_DoorDetect_area_entered(area: Area2D) -> void:
 	emit_signal("door_detected", area.get_parent())
 
 func _time(time):
-	# Уменьшение стамины по дефолту
 	print(time)
 		
-		
 
-func _on_DoorDetect_area_exited(area: Area2D) -> void:
-	area.get_parent().close()
+func _on_DoorDetect_area_exited(door_area: Area2D) -> void:
+	door_area.get_parent().close()

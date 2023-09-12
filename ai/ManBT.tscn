@@ -1,22 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://ai/ManBT.gd" type="Script" id=1]
-[ext_resource path="res://ai/actions/GoToBed.tscn" type="PackedScene" id=2]
-[ext_resource path="res://addons/beehave/nodes/composites/sequence_star.gd" type="Script" id=3]
-[ext_resource path="res://ai/actions/Wait.tscn" type="PackedScene" id=4]
-[ext_resource path="res://ai/actions/Sleep.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ai/subtrees/GoToSleepSubTree.tscn" type="PackedScene" id=2]
 
 [node name="ManBT" type="Node"]
 script = ExtResource( 1 )
 
-[node name="SequenceStarComposite" type="Node" parent="."]
-script = ExtResource( 3 )
-
-[node name="GoToBed" parent="SequenceStarComposite" instance=ExtResource( 2 )]
-
-[node name="Wait" parent="SequenceStarComposite" instance=ExtResource( 4 )]
-
-[node name="Sleep" parent="SequenceStarComposite" instance=ExtResource( 5 )]
-
-[node name="Wait2" parent="SequenceStarComposite" instance=ExtResource( 4 )]
-wait_time = 10
+[node name="GoToSleep" parent="." instance=ExtResource( 2 )]

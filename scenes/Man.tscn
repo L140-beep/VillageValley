@@ -1,8 +1,9 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://scenes/Human.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Modern tiles_Free/Characters_free/Adam_16x16.png" type="Texture" id=2]
 [ext_resource path="res://assets/Modern tiles_Free/Characters_free/Adam_sleep_16x16.png" type="Texture" id=3]
+[ext_resource path="res://fonts/Godot-Fontpack-d244bf6170b399a6d4d26a0d906058ddf2dafdf1/fonts/droid-sans/DroidSans.tres" type="DynamicFont" id=4]
 
 [sub_resource type="Animation" id=2]
 resource_name = "IdleDown"
@@ -463,6 +464,8 @@ animation = "Sleep"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=31]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+
 [sub_resource type="AnimationNodeStateMachine" id=13]
 states/Idle/node = SubResource( 12 )
 states/Idle/position = Vector2( 560, 64 )
@@ -470,7 +473,7 @@ states/Run/node = SubResource( 23 )
 states/Run/position = Vector2( 729, 64 )
 states/Sleep/node = SubResource( 28 )
 states/Sleep/position = Vector2( 559.425, 139 )
-transitions = [ "Idle", "Run", SubResource( 24 ), "Run", "Idle", SubResource( 25 ), "Idle", "Sleep", SubResource( 29 ), "Sleep", "Idle", SubResource( 30 ), "Sleep", "Run", SubResource( 31 ) ]
+transitions = [ "Idle", "Run", SubResource( 24 ), "Run", "Idle", SubResource( 25 ), "Idle", "Sleep", SubResource( 29 ), "Sleep", "Idle", SubResource( 30 ), "Sleep", "Run", SubResource( 31 ), "Run", "Sleep", SubResource( 32 ) ]
 start_node = "Idle"
 graph_offset = Vector2( 333.059, -20 )
 
@@ -487,7 +490,7 @@ scale = Vector2( 1.0625, 0.96875 )
 texture = ExtResource( 2 )
 hframes = 24
 vframes = 7
-frame = 46
+frame = 44
 
 [node name="AnimationPlayer" parent="." index="2"]
 anims/IdleDown = SubResource( 2 )
@@ -519,10 +522,13 @@ position = Vector2( 1, 1 )
 radius = 17.0
 
 [node name="NameLabel" parent="." index="7"]
-margin_left = -10.0
-margin_top = 10.0
-margin_right = 10.0
-margin_bottom = 24.0
+margin_left = -19.0
+margin_top = 2.0
+margin_right = 19.0
+margin_bottom = 16.0
+custom_fonts/font = ExtResource( 4 )
+text = "Nigger
+"
 
 [node name="Sleep" parent="." index="8"]
 visible = false

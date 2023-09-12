@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/Human.gd" type="Script" id=1]
 [ext_resource path="res://fonts/Godot-Fontpack-d244bf6170b399a6d4d26a0d906058ddf2dafdf1/fonts/montreal/Montreal.tres" type="DynamicFont" id=2]
+[ext_resource path="res://scenes/ProgressBar.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 3.0
@@ -61,6 +62,12 @@ collision_layer = 4
 [node name="CollisionShape" type="CollisionShape2D" parent="DoorDetect"]
 position = Vector2( 0, -9 )
 shape = SubResource( 2 )
+
+[node name="ProgressBar" parent="." instance=ExtResource( 3 )]
+margin_left = -8.0
+margin_top = -2.0
+margin_right = -8.0
+margin_bottom = -2.0
 
 [connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_NavigationAgent2D_navigation_finished"]
 [connection signal="target_reached" from="NavigationAgent2D" to="." method="_on_NavigationAgent2D_target_reached"]

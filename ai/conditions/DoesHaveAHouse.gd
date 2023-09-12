@@ -1,6 +1,7 @@
 extends ConditionLeaf
 
 func tick(actor, blackboard):
-	if blackboard.get("door"):
+	if actor.get_house() != null:
 		return SUCCESS
+	
 	return FAILURE
