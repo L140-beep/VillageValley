@@ -490,7 +490,7 @@ scale = Vector2( 1.0625, 0.96875 )
 texture = ExtResource( 2 )
 hframes = 24
 vframes = 7
-frame = 44
+frame = 45
 
 [node name="AnimationPlayer" parent="." index="2"]
 anims/IdleDown = SubResource( 2 )
@@ -519,6 +519,7 @@ position = Vector2( 1, 1 )
 position = Vector2( 1, 1 )
 
 [node name="NavigationAgent2D" parent="." index="6"]
+path_desired_distance = 3.0
 radius = 17.0
 
 [node name="NameLabel" parent="." index="7"]

@@ -49,11 +49,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/beehave/blackboard.gd"
 }, {
-"base": "Node2D",
-"class": "Box",
-"language": "GDScript",
-"path": "res://scenes/Box.gd"
-}, {
 "base": "BeehaveNode",
 "class": "Composite",
 "language": "GDScript",
@@ -123,6 +118,11 @@ _global_script_classes=[ {
 "class": "SequenceStarComposite",
 "language": "GDScript",
 "path": "res://addons/beehave/nodes/composites/sequence_star.gd"
+}, {
+"base": "Node2D",
+"class": "VillageContainer",
+"language": "GDScript",
+"path": "res://scenes/Container.gd"
 } ]
 _global_script_class_icons={
 "ActionLeaf": "res://addons/beehave/icons/action.svg",
@@ -133,7 +133,6 @@ _global_script_class_icons={
 "BeehaveRoot": "res://addons/beehave/icons/tree.svg",
 "BeehaveTree": "res://addons/beehave/icons/icon.png",
 "Blackboard": "",
-"Box": "",
 "Composite": "res://addons/beehave/icons/category_composite.svg",
 "ConditionLeaf": "res://addons/beehave/icons/condition.svg",
 "Decorator": "res://addons/beehave/icons/category_decorator.svg",
@@ -147,7 +146,8 @@ _global_script_class_icons={
 "SelectorComposite": "res://addons/beehave/icons/selector.svg",
 "SelectorStarComposite": "res://addons/beehave/icons/selector_star.svg",
 "SequenceComposite": "res://addons/beehave/icons/sequencer.svg",
-"SequenceStarComposite": "res://addons/beehave/icons/sequencer_star.svg"
+"SequenceStarComposite": "res://addons/beehave/icons/sequencer_star.svg",
+"VillageContainer": ""
 }
 
 [application]

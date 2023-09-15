@@ -547,7 +547,7 @@ format = 1
 tile_data = PoolIntArray( -131051, 0, 7, 9, 0, 7, 65557, 0, 9, 131073, 0, 6, 524311, 0, 10, 655366, 0, 6, 720916, 0, 7, 786436, 0, 7, 851984, 0, 7 )
 
 [node name="Man" parent="." instance=ExtResource( 1 )]
-position = Vector2( 56, 64 )
+position = Vector2( 136, 136 )
 z_index = 999
 collision/safe_margin = 0.18
 show_stamina = false
@@ -556,6 +556,17 @@ house = NodePath("../House")
 MAX_SPEED = 50.0
 
 [node name="ManBT" parent="Man" instance=ExtResource( 6 )]
+
+[node name="Man2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 56, 136 )
+z_index = 999
+collision/safe_margin = 0.18
+show_stamina = false
+village_name = "Iliya"
+house = NodePath("../House")
+MAX_SPEED = 50.0
+
+[node name="ManBT" parent="Man2" instance=ExtResource( 6 )]
 
 [node name="DirtRoad" type="TileMap" parent="."]
 z_index = 1
@@ -590,8 +601,8 @@ scale = Vector2( 0.25, 0.28125 )
 texture = ExtResource( 5 )
 
 [node name="Woman" parent="." instance=ExtResource( 7 )]
-position = Vector2( 184, 136 )
-z_index = 3
+position = Vector2( 304, 96 )
+z_index = 4
 collision_layer = 1
 collision_mask = 1
 show_stamina = false
@@ -599,7 +610,7 @@ show_stamina = false
 [node name="ManBT" parent="Woman" instance=ExtResource( 6 )]
 
 [node name="Pit" parent="." instance=ExtResource( 9 )]
-position = Vector2( 384, 104 )
+position = Vector2( 368, 64 )
 
 [node name="WorldClock" parent="." instance=ExtResource( 10 )]
 

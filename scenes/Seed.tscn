@@ -3,3 +3,6 @@
 [node name="Seed" type="Node2D"]
 
 [node name="Position2D" type="Position2D" parent="."]
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 1
