@@ -1,0 +1,149 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://scenes/Human.gd" type="Script" id=1]
+[ext_resource path="res://fonts/Godot-Fontpack-d244bf6170b399a6d4d26a0d906058ddf2dafdf1/fonts/montreal/Montreal.tres" type="DynamicFont" id=2]
+[ext_resource path="res://scenes/ProgressBar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/Modern tiles_Free/Characters_free/Adam_sit3_16x16.png" type="Texture" id=4]
+[ext_resource path="res://assets/Modern tiles_Free/Characters_free/Adam_sit2_16x16.png" type="Texture" id=5]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 3.0
+height = 3.0
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 6.0
+height = 4.0
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 2.0
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 6.0
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 26, 32 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 5 )
+region = Rect2( 32, 0, 26, 32 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 5 )
+region = Rect2( 64, 0, 26, 32 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 5 )
+region = Rect2( 96, 0, 26, 32 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 5 )
+region = Rect2( 128, 0, 26, 32 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 5 )
+region = Rect2( 160, 0, 26, 32 )
+
+[sub_resource type="SpriteFrames" id=40]
+animations = [ {
+"frames": [ SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ) ],
+"loop": true,
+"name": "Sit",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Human" type="KinematicBody2D"]
+position = Vector2( 0, 1 )
+script = ExtResource( 1 )
+MAX_SPEED = 1.0
+
+[node name="Sprite" type="Sprite" parent="."]
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -6 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+
+[node name="FOV" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FOV"]
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 10.0
+path_max_distance = 100.0
+avoidance_enabled = true
+neighbor_dist = 10.0
+max_neighbors = 7
+max_speed = 100.0
+
+[node name="NameLabel" type="Label" parent="."]
+margin_left = -20.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 2 )
+text = "НИГГЕР
+"
+align = 1
+valign = 1
+max_lines_visible = 1
+
+[node name="Sleep" type="Sprite" parent="."]
+
+[node name="DoorDetect" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape" type="CollisionShape2D" parent="DoorDetect"]
+position = Vector2( 0, -9 )
+shape = SubResource( 2 )
+
+[node name="ProgressBar" parent="." instance=ExtResource( 3 )]
+visible = false
+margin_left = -6.0
+margin_top = -2.0
+margin_right = -6.0
+margin_bottom = -2.0
+rect_scale = Vector2( 0.75, 0.6 )
+
+[node name="InteractArea" type="Area2D" parent="."]
+position = Vector2( 0, -2 )
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+position = Vector2( 0, -4 )
+shape = SubResource( 3 )
+
+[node name="ZoneArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZoneArea"]
+position = Vector2( 0, -9 )
+shape = SubResource( 4 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( -2, -8 )
+frames = SubResource( 40 )
+animation = "Sit"
+frame = 3
+
+[connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_NavigationAgent2D_navigation_finished"]
+[connection signal="target_reached" from="NavigationAgent2D" to="." method="_on_NavigationAgent2D_target_reached"]
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_NavigationAgent2D_velocity_computed"]
+[connection signal="area_entered" from="DoorDetect" to="." method="_on_DoorDetect_area_entered"]
+[connection signal="completed" from="ProgressBar" to="." method="_on_ProgressBar_completed"]
+[connection signal="area_entered" from="InteractArea" to="." method="_on_InteractArea_area_entered"]
+[connection signal="area_exited" from="InteractArea" to="." method="_on_InteractArea_area_exited"]
+[connection signal="area_entered" from="ZoneArea" to="." method="_on_ZoneArea_area_entered"]

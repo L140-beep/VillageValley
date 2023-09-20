@@ -1,0 +1,71 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://ai/conditions/DoesHaveAHouse.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ai/actions/Sleep.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/beehave/nodes/composites/sequence_star.gd" type="Script" id=3]
+[ext_resource path="res://ai/conditions/IsThereABed?.tscn" type="PackedScene" id=4]
+[ext_resource path="res://addons/beehave/nodes/composites/selector_star.gd" type="Script" id=5]
+[ext_resource path="res://ai/actions/GoToBed.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ai/actions/LieDownOnBed.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ai/actions/GoAtHome.tscn" type="PackedScene" id=8]
+[ext_resource path="res://addons/beehave/nodes/decorators/inverter.gd" type="Script" id=9]
+[ext_resource path="res://ai/actions/Wait.tscn" type="PackedScene" id=10]
+[ext_resource path="res://ai/conditions/AlreadyAtHome.tscn" type="PackedScene" id=11]
+[ext_resource path="res://ai/conditions/AlreadySleep.tscn" type="PackedScene" id=12]
+
+[node name="GoToSleep" type="Node"]
+script = ExtResource( 5 )
+
+[node name="SequenceStarComposite" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="DoesHaveAHouse" parent="SequenceStarComposite" instance=ExtResource( 1 )]
+
+[node name="SelectorStarComposite2" type="Node" parent="SequenceStarComposite"]
+script = ExtResource( 5 )
+
+[node name="AlreadyAtHome" parent="SequenceStarComposite/SelectorStarComposite2" instance=ExtResource( 11 )]
+
+[node name="GoAtHome" parent="SequenceStarComposite/SelectorStarComposite2" instance=ExtResource( 8 )]
+
+[node name="SelectorStarComposite" type="Node" parent="SequenceStarComposite"]
+script = ExtResource( 5 )
+
+[node name="SelectorStarComposite" type="Node" parent="SequenceStarComposite/SelectorStarComposite"]
+script = ExtResource( 5 )
+
+[node name="AlreadySleep" parent="SequenceStarComposite/SelectorStarComposite/SelectorStarComposite" instance=ExtResource( 12 )]
+
+[node name="SequenceStarComposite" type="Node" parent="SequenceStarComposite/SelectorStarComposite/SelectorStarComposite"]
+script = ExtResource( 3 )
+
+[node name="IsThereABed\?" parent="SequenceStarComposite/SelectorStarComposite/SelectorStarComposite/SequenceStarComposite" instance=ExtResource( 4 )]
+
+[node name="GoToBed" parent="SequenceStarComposite/SelectorStarComposite/SelectorStarComposite/SequenceStarComposite" instance=ExtResource( 6 )]
+
+[node name="LieDownOnBed" parent="SequenceStarComposite/SelectorStarComposite/SelectorStarComposite/SequenceStarComposite" instance=ExtResource( 7 )]
+
+[node name="Sleep" parent="SequenceStarComposite/SelectorStarComposite/SelectorStarComposite/SequenceStarComposite" instance=ExtResource( 2 )]
+
+[node name="SequenceStarComposite2" type="Node" parent="SequenceStarComposite/SelectorStarComposite"]
+script = ExtResource( 3 )
+
+[node name="InverterDecorator" type="Node" parent="SequenceStarComposite/SelectorStarComposite/SequenceStarComposite2"]
+script = ExtResource( 9 )
+
+[node name="IsThereABed\?" parent="SequenceStarComposite/SelectorStarComposite/SequenceStarComposite2/InverterDecorator" instance=ExtResource( 4 )]
+
+[node name="Sleep" parent="SequenceStarComposite/SelectorStarComposite/SequenceStarComposite2" instance=ExtResource( 2 )]
+
+[node name="SequenceStarComposite2" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="InverterDecorator" type="Node" parent="SequenceStarComposite2"]
+script = ExtResource( 9 )
+
+[node name="DoesHaveAHouse" parent="SequenceStarComposite2/InverterDecorator" instance=ExtResource( 1 )]
+
+[node name="Sleep" parent="SequenceStarComposite2" instance=ExtResource( 2 )]
+
+[node name="Wait" parent="SequenceStarComposite2" instance=ExtResource( 10 )]
+wait_time = 10

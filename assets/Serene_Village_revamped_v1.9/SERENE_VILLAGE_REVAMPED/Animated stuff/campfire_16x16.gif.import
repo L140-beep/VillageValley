@@ -1,0 +1,15 @@
+[remap]
+
+importer="gif.animated.texture.plugin"
+type="SpriteFrames"
+path="res://.import/campfire_16x16.gif-70f0ec273c01d0138914c9497f1a4cbb.tres"
+
+[deps]
+
+source_file="res://assets/Serene_Village_revamped_v1.9/SERENE_VILLAGE_REVAMPED/Animated stuff/campfire_16x16.gif"
+dest_files=[ "res://.import/campfire_16x16.gif-70f0ec273c01d0138914c9497f1a4cbb.tres" ]
+
+[params]
+
+Filter=false
+MipMaps=false

@@ -8,14 +8,237 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Leaf",
+"class": "ActionLeaf",
+"language": "GDScript",
+"path": "res://addons/beehave/nodes/leaves/action.gd"
+}, {
+"base": "Decorator",
+"class": "AlwaysFailDecorator",
+"language": "GDScript",
+"path": "res://addons/beehave/nodes/decorators/failer.gd"
+}, {
+"base": "Decorator",
+"class": "AlwaysSucceedDecorator",
+"language": "GDScript",
+"path": "res://addons/beehave/nodes/decorators/succeeder.gd"
+}, {
+"base": "Node2D",
+"class": "Bed",
+"language": "GDScript",
+"path": "res://scenes/Decor/Bed.gd"
+}, {
+"base": "BeehaveTree",
+"class": "BeehaveNode",
+"language": "GDScript",
+"path": "res://addons/beehave/nodes/beehave_node.gd"
+}, {
+"base": "BeehaveTree",
+"class": "BeehaveRoot",
+"language": "GDScript",
+"path": "res://addons/beehave/nodes/beehave_root.gd"
+}, {
+"base": "Node",
+"class": "BeehaveTree",
+"language": "GDScript",
+"path": "res://addons/beehave/nodes/beehave_tree.gd"
+}, {
+"base": "Reference",
+"class": "Blackboard",
+"language": "GDScript",
+"path": "res://addons/beehave/blackboard.gd"
+}, {
+"base": "Item",
+"class": "Bucket",
+"language": "GDScript",
+"path": "res://scenes/Bucket.gd"
+}, {
+"base": "Node2D",
+"class": "Chair",
+"language": "GDScript",
+"path": "res://scenes/Chair.gd"
+}, {
+"base": "BeehaveNode",
+"class": "Composite",
+"language": "GDScript",
+"path": "res://addons/beehave/nodes/composites/composite.gd"
+}, {
+"base": "Leaf",
+"class": "ConditionLeaf",
+"language": "GDScript",
+"path": "res://addons/beehave/nodes/leaves/condition.gd"
+}, {
+"base": "BeehaveNode",
+"class": "Decorator",
+"language": "GDScript",
+"path": "res://addons/beehave/nodes/decorators/decorator.gd"
+}, {
+"base": "Node2D",
+"class": "Door",
+"language": "GDScript",
+"path": "res://scenes/Decor/Door.gd"
+}, {
+"base": "Node2D",
+"class": "Farm",
+"language": "GDScript",
+"path": "res://scenes/Farm.gd"
+}, {
+"base": "Item",
+"class": "Food",
+"language": "GDScript",
+"path": "res://scenes/Food.gd"
+}, {
+"base": "Node2D",
+"class": "GardenBed",
+"language": "GDScript",
+"path": "res://scenes/GardenBed.gd"
+}, {
+"base": "Reference",
+"class": "GifReader",
+"language": "GDScript",
+"path": "res://addons/gif-importer/GIFReader.gd"
+}, {
+"base": "Node2D",
+"class": "House",
+"language": "GDScript",
+"path": "res://scenes/House.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Human",
+"language": "GDScript",
+"path": "res://scenes/Human.gd"
+}, {
+"base": "Decorator",
+"class": "InverterDecorator",
+"language": "GDScript",
+"path": "res://addons/beehave/nodes/decorators/inverter.gd"
+}, {
+"base": "Node",
+"class": "Item",
+"language": "GDScript",
+"path": "res://scenes/Item.gd"
+}, {
+"base": "BeehaveNode",
+"class": "Leaf",
+"language": "GDScript",
+"path": "res://addons/beehave/nodes/leaves/leaf.gd"
+}, {
+"base": "Decorator",
+"class": "LimiterDecorator",
+"language": "GDScript",
+"path": "res://addons/beehave/nodes/decorators/limiter.gd"
+}, {
+"base": "Node2D",
+"class": "Pit",
+"language": "GDScript",
+"path": "res://scenes/Pit.gd"
+}, {
+"base": "Node2D",
+"class": "Plant",
+"language": "GDScript",
+"path": "res://scenes/Seedling.gd"
+}, {
+"base": "Composite",
+"class": "SelectorComposite",
+"language": "GDScript",
+"path": "res://addons/beehave/nodes/composites/selector.gd"
+}, {
+"base": "Composite",
+"class": "SelectorStarComposite",
+"language": "GDScript",
+"path": "res://addons/beehave/nodes/composites/selector_star.gd"
+}, {
+"base": "Composite",
+"class": "SequenceComposite",
+"language": "GDScript",
+"path": "res://addons/beehave/nodes/composites/sequence.gd"
+}, {
+"base": "Composite",
+"class": "SequenceStarComposite",
+"language": "GDScript",
+"path": "res://addons/beehave/nodes/composites/sequence_star.gd"
+}, {
+"base": "Node2D",
+"class": "VillageContainer",
+"language": "GDScript",
+"path": "res://scenes/Container.gd"
+} ]
+_global_script_class_icons={
+"ActionLeaf": "res://addons/beehave/icons/action.svg",
+"AlwaysFailDecorator": "res://addons/beehave/icons/fail.svg",
+"AlwaysSucceedDecorator": "res://addons/beehave/icons/succeed.svg",
+"Bed": "",
+"BeehaveNode": "res://addons/beehave/icons/action.svg",
+"BeehaveRoot": "res://addons/beehave/icons/tree.svg",
+"BeehaveTree": "res://addons/beehave/icons/icon.png",
+"Blackboard": "",
+"Bucket": "",
+"Chair": "",
+"Composite": "res://addons/beehave/icons/category_composite.svg",
+"ConditionLeaf": "res://addons/beehave/icons/condition.svg",
+"Decorator": "res://addons/beehave/icons/category_decorator.svg",
+"Door": "",
+"Farm": "",
+"Food": "",
+"GardenBed": "",
+"GifReader": "",
+"House": "",
+"Human": "",
+"InverterDecorator": "res://addons/beehave/icons/inverter.svg",
+"Item": "",
+"Leaf": "res://addons/beehave/icons/action.svg",
+"LimiterDecorator": "res://addons/beehave/icons/limiter.svg",
+"Pit": "",
+"Plant": "",
+"SelectorComposite": "res://addons/beehave/icons/selector.svg",
+"SelectorStarComposite": "res://addons/beehave/icons/selector_star.svg",
+"SequenceComposite": "res://addons/beehave/icons/sequencer.svg",
+"SequenceStarComposite": "res://addons/beehave/icons/sequencer_star.svg",
+"VillageContainer": ""
+}
+
 [application]
 
 config/name="VillageValley"
+run/main_scene="res://scenes/Main.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+WorldClock="*res://scenes/WorldClock.tscn"
+Types="*res://types.gd"
+
+[display]
+
+window/size/width=320
+window/size/height=180
+window/size/test_width=1280
+window/size/test_height=720
+window/stretch/mode="2d"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/beehave/plugin.cfg", "res://addons/carmel4a97.RTS_Camera2D/plugin.cfg" )
 
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
+
+[layer_names]
+
+2d_physics/layer_1="Collision"
+2d_physics/layer_2="Zone"
+2d_physics/layer_3="Interact"
+2d_physics/layer_4="Door"
+2d_navigation/layer_1="Environment"
+2d_navigation/layer_2="HumanHitbox"
+2d_navigation/layer_3="Road"
+2d_navigation/layer_4="Glass"
+
+[navigation]
+
+2d/default_edge_connection_margin=32.0
 
 [physics]
 
@@ -23,4 +246,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+2d/snapping/use_gpu_pixel_snap=true
 environment/default_environment="res://default_env.tres"
