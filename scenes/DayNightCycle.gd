@@ -9,7 +9,6 @@ var time_scale = 0.05
 
 
 func _ready() -> void:
-	#Engine.time_scale = 2
 	self.color = DAY_COLOR
 	pass
 

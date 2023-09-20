@@ -264,10 +264,14 @@
 5/z_index = 0
 
 [node name="Beet" instance=ExtResource( 2 )]
-position = Vector2( 16, 16 )
+position = Vector2( 0, -5 )
 
 [node name="Dry" parent="." index="0"]
 tile_set = SubResource( 1 )
+tile_data = PoolIntArray( -1, 0, 0 )
+
+[node name="Position2D" parent="." index="1"]
+position = Vector2( -4, -4 )
 
 [node name="Wet" parent="." index="2"]
 tile_set = SubResource( 2 )
@@ -275,3 +279,4 @@ cell_size = Vector2( 8, 8 )
 
 [node name="Dead" parent="." index="3"]
 tile_set = SubResource( 3 )
+cell_size = Vector2( 8, 8 )

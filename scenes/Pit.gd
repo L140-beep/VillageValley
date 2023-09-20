@@ -1,4 +1,5 @@
+class_name Pit
 extends Node2D
 
-func getWater(bucket):
-	bucket.fill()
+func getWater(bucket: Bucket):
+	bucket.set_volume(bucket.max_volume)

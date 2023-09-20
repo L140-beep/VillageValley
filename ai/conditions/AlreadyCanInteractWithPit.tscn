@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ai/conditions/AlreadyCanInteractWithPit.gd" type="Script" id=1]
+
+[node name="AlreadyCanInteractWithPit" type="Node"]
+script = ExtResource( 1 )

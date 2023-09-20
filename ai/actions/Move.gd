@@ -3,7 +3,7 @@ extends ActionLeaf
 var target_reached = false
 var navigation_finished = false
 var initialized = false
-var target: Position2D = null
+var target = null
 
 
 func init(actor):
@@ -20,7 +20,7 @@ func _reset(actor):
 	initialized = false
 	actor = null
 
-func setTarget(actor):
+func setTarget(actor, blackboard):
 	pass
 
 func tick(actor, blackboard):
@@ -34,7 +34,7 @@ func tick(actor, blackboard):
 		return FAILURE
 	
 	if target == null:
-		setTarget(actor)
+		setTarget(actor, blackboard)
 	return RUNNING
 
 func _target_reached():
